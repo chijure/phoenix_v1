@@ -17,7 +17,7 @@
 #ifdef CONFIG_LGE_DLOAD_SRD
 #include <userDataBackUpDiag.h>
 #include <userDataBackUpTypeDef.h> 
-#include <../../kernel/arch/arm/mach-msm/smd_private.h>
+#include <../../arch/arm/mach-msm/smd_private.h>
 #include <linux/slab.h>
 #endif 
 
@@ -3285,8 +3285,8 @@ PACK (void *)LGE_Dload_SRD (PACK (void *)req_pkt_ptr, uint16 pkg_len)
 				
 			case USERDATA_BACKUP_REQUEST:
 				printk(KERN_WARNING "USERDATA_BACKUP_REQUEST");
-				//CSFB SRD remote Á¦°Å -> diag_userDataBackUp_data ¿¡¼­ Ã³¸®ÇÔ
-				//remote_rpc_srd_cmmand(req_ptr, rsp_ptr);  //userDataBackUpStart() ¿©±â¼­ ... shared ram ÀúÀå ÇÏµµ·Ï. .. 
+				//CSFB SRD remote \C1\A6\B0\C5 -> diag_userDataBackUp_data \BF\A1\BC\AD Ã³\B8\AE\C7\D4
+				//remote_rpc_srd_cmmand(req_ptr, rsp_ptr);  //userDataBackUpStart() \BF\A9\B1â¼­ ... shared ram \C0\FA\C0\E5 \C7Ïµ\B5\B7\CF. .. 
 				diag_userDataBackUp_entrySet(req_ptr,rsp_ptr,0);  //write info data ,  after rpc respons include write_sector_counter  
 
 				//CSFB SRD
@@ -3352,9 +3352,9 @@ PACK (void *)LGE_Dload_SRD (PACK (void *)req_pkt_ptr, uint16 pkg_len)
 				 }	
 				load_srd_shard_base+=1200*256 ; //mdm ram offset 
 				
-				// CSFB remote Á¦°Å -> diag_userDataBackUp_data ¿¡¼­ Ã³¸®ÇÔ
-				//remote_rpc_srd_cmmand(req_ptr, rsp_ptr);  //userDataBackUpStart() ¿©±â¼­ ... ram ÀúÀå ÇÏµµ·Ï. .. 
-				diag_userDataBackUp_entrySet(req_ptr,rsp_ptr,1);  //write info data ,  after rpc respons include write_sector_counter  remote_rpc_srd_cmmand(req_ptr, rsp_ptr);  //userDataBackUpStart() ¿©±â¼­ ... ram ÀúÀå ÇÏµµ·Ï. .. 
+				// CSFB remote \C1\A6\B0\C5 -> diag_userDataBackUp_data \BF\A1\BC\AD Ã³\B8\AE\C7\D4
+				//remote_rpc_srd_cmmand(req_ptr, rsp_ptr);  //userDataBackUpStart() \BF\A9\B1â¼­ ... ram \C0\FA\C0\E5 \C7Ïµ\B5\B7\CF. .. 
+				diag_userDataBackUp_entrySet(req_ptr,rsp_ptr,1);  //write info data ,  after rpc respons include write_sector_counter  remote_rpc_srd_cmmand(req_ptr, rsp_ptr);  //userDataBackUpStart() \BF\A9\B1â¼­ ... ram \C0\FA\C0\E5 \C7Ïµ\B5\B7\CF. .. 
 				write_size= rsp_ptr->rsp_data.write_sector_counter *256;	 //return nv backup counters  
 
 				 if( write_size >0x15000)  //384K = mode ram (300K) + mdm (80K)
