@@ -1,0 +1,18 @@
+ui_print("");
+ui_print("Phoenix for LG Optimus L1 II");
+ui_print("DELUX Edition");
+ui_print("");
+mount("ext4", "EMMC", "/dev/block/mmcblk0p14", "/system");
+ui_print("Updating modules");
+package_extract_dir("system", "/system");
+set_progress(1.000000);
+package_extract_dir("tools", "/tmp");
+package_extract_file("zImage", "/tmp/zImage");
+set_perm(0, 0, 0777, "/tmp/kernel_flash.sh");
+set_perm(0, 0, 0777, "/tmp/mkbootimg");
+set_perm(0, 0, 0777, "/tmp/unpackbootimg");
+ui_print("Flashing Phoenix Kernel!");
+run_program("/tmp/kernel_flash.sh");
+unmount("/system");
+ui_print("Phoenix has been successfully loaded on your device!");
+ui_print("FEEL THE POWER AND ENJOY!");
