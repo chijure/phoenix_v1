@@ -4,7 +4,7 @@ kernel="Phoenix"
 variant="v1"
 toolchain=~/arm-eabi-4.7/bin
 toolchain2="arm-eabi-"
-config="v1-perf_rev_10_defconfig"
+config="phoenix_V1_defconfig"
 kerneltype="zImage"
 jobcount="-j$(grep -c ^processor /proc/cpuinfo)"
 
